@@ -13,7 +13,6 @@ const Icon = {
       <path d="m5 12 5 5L20 7" />
     </svg>
   ),
-  /* list marker — same glyph as the original design */
   Chevron: (p: { className?: string }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14" fill="none" aria-hidden="true" className={p.className}>
       <path d="M9.99997 6.99999C9.99997 6.58098 9.84104 6.15975 9.52097 5.83998L4.93627 1.25945C4.29613 0.619897 3.25867 0.619897 2.61853 1.25945C1.97839 1.899 1.97839 2.93552 2.61853 3.57508L4.84135 5.79587C6.04216 6.99779 4.84135 8.20412 4.84135 8.20412L2.61853 10.4249C1.97839 11.0645 1.97839 12.101 2.61853 12.7405C3.25867 13.3801 4.29613 13.3801 4.93627 12.7405L9.52097 8.16001C9.84104 7.84024 10.0022 7.41901 9.99997 6.99999Z" fill="currentColor" />
@@ -123,6 +122,9 @@ const PHONE = "(424) 424-1838";
 const PHONE_HREF = "tel:+14244241838";
 const LOGO_SRC = "https://raw.githubusercontent.com/Binec/newview-lp/main/src/assets/logoNiuviu.png";
 
+// Base URL for images stored in the GitHub repository (branch main)
+const IMG_BASE = "https://raw.githubusercontent.com/Binec/newview-lp2/main/public/images/";
+
 /* ---------- Shared bits ---------- */
 function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -188,7 +190,6 @@ function Navbar() {
   }, []);
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* Extended feathered blur behind the bar — keeps header legible over photos/scrolled content */}
       <div aria-hidden="true" className="header-aura pointer-events-none absolute inset-x-0 top-0 h-[calc(100%+28px)]" />
       <div className={cn("glass-header relative transition-all duration-300", scrolled && "is-scrolled")}>
         <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-3 px-4 sm:px-5">
@@ -202,7 +203,6 @@ function Navbar() {
           </div>
         </div>
 
-        {/* scroll progress bar */}
         <div aria-hidden="true" className="relative h-[3px] w-full overflow-hidden bg-ink/5">
           <div
             className="h-full w-full origin-left bg-brand transition-transform duration-150 ease-out"
@@ -218,7 +218,6 @@ function Navbar() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pt-24 pb-12 sm:pt-36 sm:pb-16 lg:pb-24">
-      {/* ambient blobs */}
       <div className="pointer-events-none absolute -top-32 -left-24 h-[480px] w-[480px] rounded-full bg-brand/25 blur-3xl animate-float-slow" />
       <div className="pointer-events-none absolute top-40 -right-32 h-[420px] w-[420px] rounded-full bg-sky/20 blur-3xl animate-float" />
       <div className="pointer-events-none absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full bg-mint blur-3xl" />
@@ -243,13 +242,11 @@ function Hero() {
           </ul>
         </div>
 
-        {/* Visual */}
         <div className="relative mx-auto w-full max-w-[560px] lg:max-w-none">
           <div className="relative overflow-hidden rounded-[32px] border border-white/60 shadow-[0_40px_80px_-40px_rgba(17,35,47,0.6)]">
-            <img src="/images/hero.jpg" alt="Calm group session in a bright treatment lounge" className="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]" />
+            <img src={`${IMG_BASE}hero.jpg`} alt="Calm group session in a bright treatment lounge" className="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
           </div>
-          {/* Floating chips sit outside the clipped photo so backdrop blur can sample it */}
           <div className="glass-float absolute left-4 top-4 rounded-2xl px-4 py-3 backdrop-blur-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-wider text-steel">Avg. verification</p>
             <p className="text-2xl font-semibold text-ink">30 <span className="text-base font-medium">min</span></p>
@@ -289,7 +286,6 @@ const INSURER_LOGOS = [
   { name: "MultiPlan", logo: `${LOGO_UP}/2025/11/multiplan-1024x182.png` },
 ];
 
-/** Logo image that falls back to the insurer's name if the file can't load. */
 function InsurerLogo({ name, logo }: { name: string; logo: string }) {
   const [failed, setFailed] = useState(false);
   return (
@@ -333,14 +329,14 @@ function TrustBar() {
 function Programs() {
   const programs = [
     {
-      img: "/images/php.jpg", short: "Daytime",
+      img: `${IMG_BASE}php.jpg`, short: "Daytime",
       tag: "PHP", title: "Partial Hospitalization", hours: "5–6 hrs/day · 5 days/wk",
       desc: "Structured, full-day clinical care without an overnight stay. Ideal when you need intensive support but want to sleep in your own bed.",
       items: ["Individual + group therapy daily", "Psychiatric care & medication management", "Return home each evening"],
       accent: "bg-brand",
     },
     {
-      img: "/images/iop.jpg", short: "AM / PM tracks",
+      img: `${IMG_BASE}iop.jpg`, short: "AM / PM tracks",
       tag: "IOP", title: "Intensive Outpatient", hours: "3 hrs/day · 3–5 days/wk",
       desc: "Morning or evening tracks that fit around a workday. Keep your job, your routine and your privacy while you heal.",
       items: ["7am & 6pm tracks available", "Career-aware scheduling", "Family sessions included"],
@@ -348,7 +344,7 @@ function Programs() {
       featured: true,
     },
     {
-      img: "/images/virtual.jpg", short: "Telehealth",
+      img: `${IMG_BASE}virtual.jpg`, short: "Telehealth",
       tag: "Virtual", title: "Telehealth IOP", hours: "Secure video · Anywhere in CA",
       desc: "The same licensed clinicians and small groups — delivered through HIPAA-compliant video from wherever you are.",
       items: ["No commute, no waiting room", "Same evidence-based curriculum", "Private 1:1 check-ins"],
@@ -374,7 +370,6 @@ function Programs() {
             )}>
               {p.featured && <span className="absolute left-5 top-5 z-10 rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-lg shadow-brand/40">Most popular</span>}
 
-              {/* photo */}
               <div className={cn("relative h-44 overflow-hidden sm:h-48", idx === programs.length - 1 && programs.length % 2 === 1 && "sm:h-auto sm:w-[38%] sm:shrink-0 lg:h-48 lg:w-full")}>
                 <img src={p.img} alt={`${p.title} at NuView Treatment Center`} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/5 to-transparent" />
@@ -403,7 +398,6 @@ function Programs() {
           ))}
         </div>
 
-        {/* reassurance banner */}
         <div className="mt-5 flex flex-col items-stretch justify-between gap-4 rounded-[24px] p-4 glass sm:mt-6 sm:flex-row sm:items-center sm:rounded-[26px] sm:p-5 sm:px-7">
           <div className="flex items-start gap-3.5 sm:items-center sm:gap-4">
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand text-white shadow-md shadow-brand/30 sm:h-12 sm:w-12">
@@ -465,11 +459,10 @@ function Professionals() {
       <div className="pointer-events-none absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-sky/10 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 sm:gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12">
-        {/* portrait */}
         <div className="relative mx-auto w-full max-w-[380px] pb-10 sm:max-w-[440px] lg:max-w-none lg:pb-0">
           <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#102838] shadow-[0_50px_90px_-46px_rgba(0,0,0,0.75)]">
             <img
-              src="/images/session.jpg"
+              src={`${IMG_BASE}session.jpg`}
               alt="In-person counseling session at NuView"
               className="aspect-[4/5] w-full object-cover"
             />
@@ -485,7 +478,6 @@ function Professionals() {
           </div>
         </div>
 
-        {/* reasons */}
         <div>
           <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50">
             <span className="h-px w-7 bg-white/35" />
@@ -537,23 +529,22 @@ function Professionals() {
   );
 }
 
-/* ---------- Facility gallery (original section) ---------- */
+/* ---------- Facility gallery ---------- */
 const UP = "https://help.nuviewtreatment.com/wp-content/uploads";
 
 type GalleryItem = { src: string; fb: string; alt: string; caption: string };
 
 const GALLERY: GalleryItem[] = [
-  { src: `${UP}/2025/09/gallery-1.jpg`, fb: "/images/fac-1.jpg", alt: "Lounge and seating area at NuView", caption: "Common lounge" },
-  { src: `${UP}/2025/09/gallery-2.jpg`, fb: "/images/fac-2.jpg", alt: "Group therapy room at NuView", caption: "Group room" },
-  { src: `${UP}/2025/09/gallery-3.jpg`, fb: "/images/php.jpg", alt: "Daytime program space at NuView", caption: "Day program" },
-  { src: `${UP}/2025/09/gallery-4.jpg`, fb: "/images/iop.jpg", alt: "Evening group space at NuView", caption: "Evening track" },
-  { src: `${UP}/2025/09/gallery-5.jpg`, fb: "/images/fac-3.jpg", alt: "Activity room at NuView", caption: "Activity room" },
-  { src: `${UP}/2025/09/gallery-6.jpg`, fb: "/images/session.jpg", alt: "One-to-one counseling room at NuView", caption: "Counseling room" },
-  { src: `${UP}/2025/09/gallery-7.jpg`, fb: "/images/virtual.jpg", alt: "Private office at NuView", caption: "Private office" },
-  { src: `${UP}/2025/09/gallery-8.jpg`, fb: "/images/hero.jpg", alt: "Exterior of the Los Angeles center", caption: "Our center" },
+  { src: `${UP}/2025/09/gallery-1.jpg`, fb: `${IMG_BASE}fac-1.jpg`, alt: "Lounge and seating area at NuView", caption: "Common lounge" },
+  { src: `${UP}/2025/09/gallery-2.jpg`, fb: `${IMG_BASE}fac-2.jpg`, alt: "Group therapy room at NuView", caption: "Group room" },
+  { src: `${UP}/2025/09/gallery-3.jpg`, fb: `${IMG_BASE}php.jpg`, alt: "Daytime program space at NuView", caption: "Day program" },
+  { src: `${UP}/2025/09/gallery-4.jpg`, fb: `${IMG_BASE}iop.jpg`, alt: "Evening group space at NuView", caption: "Evening track" },
+  { src: `${UP}/2025/09/gallery-5.jpg`, fb: `${IMG_BASE}fac-3.jpg`, alt: "Activity room at NuView", caption: "Activity room" },
+  { src: `${UP}/2025/09/gallery-6.jpg`, fb: `${IMG_BASE}session.jpg`, alt: "One-to-one counseling room at NuView", caption: "Counseling room" },
+  { src: `${UP}/2025/09/gallery-7.jpg`, fb: `${IMG_BASE}virtual.jpg`, alt: "Private office at NuView", caption: "Private office" },
+  { src: `${UP}/2025/09/gallery-8.jpg`, fb: `${IMG_BASE}hero.jpg`, alt: "Exterior of the Los Angeles center", caption: "Our center" },
 ];
 
-/** Image with a local fallback so a dead remote URL never leaves a hole. */
 function SmartImg({ src, fallback, alt, className }: { src: string; fallback: string; alt: string; className?: string }) {
   const [current, setCurrent] = useState(src);
   useEffect(() => setCurrent(src), [src]);
@@ -584,7 +575,6 @@ function Gallery() {
     if (!track || !child) return;
     const tRect = track.getBoundingClientRect();
     const cRect = child.getBoundingClientRect();
-    // centre the card in the visible track
     const delta = cRect.left - tRect.left - (track.clientWidth - cRect.width) / 2;
     track.scrollTo({ left: track.scrollLeft + delta, behavior: "smooth" });
   }, []);
@@ -592,7 +582,6 @@ function Gallery() {
   const nextLightbox = useCallback(() => setOpen((o) => ((o ?? 0) + 1) % GALLERY.length), []);
   const prevLightbox = useCallback(() => setOpen((o) => ((o ?? 0) - 1 + GALLERY.length) % GALLERY.length), []);
 
-  /* track scroll → active dot */
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -617,7 +606,6 @@ function Gallery() {
     return () => { track.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
   }, []);
 
-  /* lightbox keyboard + scroll lock */
   useEffect(() => {
     if (open === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -631,7 +619,6 @@ function Gallery() {
     return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
   }, [open]);
 
-  /* lightbox swipe */
   const onTouchStart = (e: React.TouchEvent) => {
     touchX.current = e.touches[0].clientX;
     touchY.current = e.touches[0].clientY;
@@ -695,11 +682,9 @@ function Gallery() {
           ))}
         </div>
 
-        {/* edge fade */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#eef5f4] to-transparent lg:w-16" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#eef5f4] to-transparent lg:w-16" />
 
-        {/* mobile arrows + swipe hint */}
         <div className="mt-3 flex items-center justify-center gap-4 px-4 md:hidden">
           <button
             type="button"
@@ -720,7 +705,6 @@ function Gallery() {
           </button>
         </div>
 
-        {/* dots */}
         <div className="mt-5 flex items-center justify-center gap-2">
           {GALLERY.map((g, i) => (
             <button
@@ -738,7 +722,6 @@ function Gallery() {
         </div>
       </div>
 
-      {/* lightbox */}
       {open !== null && (
         <div
           role="dialog"
@@ -812,7 +795,7 @@ function Gallery() {
   );
 }
 
-/* ---------- Insurance verification (same fields & layout as the original) ---------- */
+/* ---------- Insurance verification ---------- */
 const INSURERS = ["Cigna", "Horizon", "Aetna", "Tufts", "Blue Cross", "Anthem", "Beacon", "AmeriHealth", "TriCare", "TriCare West", "MultiPlan"];
 
 type VerifyFields = {
@@ -881,7 +864,6 @@ function Verify() {
     setSent(true);
   };
 
-  // Original input styling — error state uses peach instead of coral (no red on the LP)
   const input =
     "w-full min-w-0 rounded-2xl border bg-cloud/60 px-4 py-3.5 text-[16px] text-ink outline-none transition-all duration-200 placeholder:text-steel/60 focus:bg-white focus:ring-4 sm:py-4 sm:text-[15.5px]";
   const ok = "border-fog/60 focus:border-brand focus:ring-brand/15";
@@ -901,15 +883,13 @@ function Verify() {
 
   return (
     <section id="verify" className="relative isolate overflow-hidden py-14 sm:py-20 lg:py-28">
-      {/* photo background softened with a blurred ink overlay */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <img src="/images/virtual.jpg" alt="" className="h-full w-full scale-105 object-cover" />
+        <img src={`${IMG_BASE}virtual.jpg`} alt="" className="h-full w-full scale-105 object-cover" />
         <div className="absolute inset-0 bg-ink/80 backdrop-blur-[6px]" />
         <div className="absolute inset-0 bg-gradient-to-br from-ink/70 via-transparent to-brand/30" />
       </div>
 
       <div className="mx-auto grid max-w-6xl items-start gap-10 px-4 sm:gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
-        {/* ---------- copy ---------- */}
         <div className="text-white lg:pt-4">
           <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-mint">
             <span className="h-px w-8 bg-mint/50" />
@@ -951,7 +931,6 @@ function Verify() {
           <Button variant="call" href={PHONE_HREF} className="mt-3 w-full sm:w-auto">Call {PHONE}</Button>
         </div>
 
-        {/* ---------- form card ---------- */}
         <div className="rounded-[24px] bg-white p-5 shadow-[0_50px_100px_-50px_rgba(0,0,0,0.8)] ring-1 ring-white/40 sm:rounded-[28px] sm:p-8">
           {sent ? (
             <div className="flex min-h-[340px] flex-col items-center justify-center text-center animate-rise sm:min-h-[460px]">
@@ -976,7 +955,6 @@ function Verify() {
               </div>
               <p className="mt-3 text-[14px] text-steel/80">“{req}” indicates required fields</p>
 
-              {/* For myself / For loved one */}
               <fieldset className="mt-5">
                 <legend className="sr-only">Who is this for?</legend>
                 <div className="grid grid-cols-2 gap-2 rounded-2xl bg-cloud p-1.5">
@@ -1000,7 +978,6 @@ function Verify() {
               </fieldset>
 
               <div className="mt-5 space-y-4">
-                {/* Full name */}
                 <div>
                   <span className={label}>Full Name {req}</span>
                   <div className="mt-2 grid gap-3 sm:grid-cols-2">
@@ -1027,7 +1004,6 @@ function Verify() {
                   </div>
                 </div>
 
-                {/* Phone + Email */}
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="vf-phone" className={label}>Phone {req}</label>
@@ -1051,7 +1027,6 @@ function Verify() {
                   </div>
                 </div>
 
-                {/* DOB + Insurance provider */}
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="vf-dob" className={label}>DOB</label>
@@ -1076,7 +1051,6 @@ function Verify() {
                   </div>
                 </div>
 
-                {/* Member ID */}
                 <div>
                   <label htmlFor="vf-memberId" className={label}>Member ID Policy Number</label>
                   <input
@@ -1213,7 +1187,6 @@ function CountUpStat({
       const start = performance.now();
       const tick = (now: number) => {
         const progress = Math.min((now - start) / duration, 1);
-        // Ease out so the final digits settle smoothly.
         const eased = 1 - Math.pow(1 - progress, 3);
         setValue(Math.round(target * eased));
         if (progress < 1) frame = requestAnimationFrame(tick);
@@ -1377,7 +1350,6 @@ function Footer() {
   );
 }
 
-/* Mobile sticky call button + desktop back-to-top (original behaviour) */
 function StickyMobileCTA() {
   return (
     <a
@@ -1417,7 +1389,6 @@ function BackToTop() {
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* global ambient background */}
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(60%_50%_at_20%_0%,rgba(26,131,121,0.18),transparent_60%),radial-gradient(50%_40%_at_90%_20%,rgba(14,194,247,0.12),transparent_60%),radial-gradient(60%_60%_at_50%_100%,rgba(230,249,247,0.9),transparent_60%)]" />
       <Navbar />
       <main>
