@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Baskervville:ital@0;1&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #1a8379;
+  --color-brand-deep: #0f5f58;
+  --color-mint: #e6f9f7;
+  --color-ink: #11232f;
+  --color-steel: #717475;
+  --color-sky: #0ec2f7;
+  --color-cloud: #f3f4f4;
+  --color-fog: #bdc2c2;
+  --color-lime: #93d534;
+  --color-peach: #ffbc7d;
+  --color-sand: #f6f8f8;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Baskervville", Georgia, serif;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* anchor links land below the fixed header instead of underneath it */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+body {
+  @apply font-sans text-ink antialiased;
+  background: #eef5f4;
+}
+
+/* Glass primitives */
+.glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 50px -30px rgba(17, 35, 47, 0.35);
+}
+.glass-strong {
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 30px 70px -40px rgba(17, 35, 47, 0.45);
+}
+.glass-dark {
+  background: rgba(17, 35, 47, 0.4);
+  backdrop-filter: blur(32px) saturate(170%);
+  -webkit-backdrop-filter: blur(32px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+}
+/* Floating hero chips — heavy blur so labels stay readable on the photo */
+.glass-float {
+  background: rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 18px 40px -18px rgba(17, 35, 47, 0.5);
+}
+.glass-float-dark {
+  background: rgba(17, 35, 47, 0.38);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 18px 40px -16px rgba(0, 0, 0, 0.55);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-float { background: rgba(255, 255, 255, 0.94); }
+  .glass-float-dark { background: rgba(17, 35, 47, 0.88); }
+}
+
+.glass-brand {
+  background: rgba(26, 131, 121, 0.12);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(26, 131, 121, 0.25);
+}
+.glass-header {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88), rgba(244, 250, 249, 0.78));
+  backdrop-filter: blur(36px) saturate(200%) brightness(1.05);
+  -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 16px 44px -22px rgba(17, 35, 47, 0.35);
+}
+.glass-header.is-scrolled {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.86));
+  border-bottom-color: rgba(26, 131, 121, 0.14);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 18px 48px -22px rgba(17, 35, 47, 0.42);
+}
+/* Soft feathered blur aura that extends below the bar so text never sits on raw content */
+.header-aura {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.18) 65%, transparent);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+/* Fallback when backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-header { background: rgba(255, 255, 255, 0.96); }
+  .header-aura { display: none; }
+}
+
+/* Serif italic emphasis for important words inside sans-serif titles */
+.em-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: 0;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-paused:hover .marquee-track { animation-play-state: paused; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
