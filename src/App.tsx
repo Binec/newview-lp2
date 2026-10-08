@@ -251,7 +251,7 @@ function Hero() {
             <p className="text-[11px] font-semibold uppercase tracking-wider text-steel">Avg. verification</p>
             <p className="text-2xl font-semibold text-ink">30 <span className="text-base font-medium">min</span></p>
           </div>
-          <div className="glass-float absolute right-4 top-1/3 rounded-2xl px-4 py-3 backdrop-blur-2xl">
+           <div className="glass-float absolute right-4 top-1/3 mt-[105px] rounded-2xl px-4 py-3 backdrop-blur-2xl sm:mt-0">
             <div className="flex items-center gap-1 text-peach">{[0,1,2,3,4].map(i => <Icon.Star key={i} className="h-3.5 w-3.5" />)}</div>
             <p className="mt-1 text-xs font-medium text-ink">4.9 · 300+ reviews</p>
           </div>
